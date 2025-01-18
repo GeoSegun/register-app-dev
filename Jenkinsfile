@@ -49,6 +49,13 @@ pipeline {
             }
         }
 
+        // This stage introduces a delay to allow SonarQube results to be processed
+        stage("Delay") {
+            steps {
+                sleep time: 15, unit: 'SECONDS'
+            }
+        }
+
         // This stage waits for the SonarQube Quality Gate result
         stage("Quality Gate") {
             steps {
@@ -59,5 +66,3 @@ pipeline {
         }
     }
 }
-
-
